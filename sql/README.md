@@ -7,65 +7,64 @@
 
 ##### TABLE: CUSTOMER
 <details>
-    <summary>Show SQL for setup...</summary>
+    <summary>Setup:</summary>
 
-    <pre>
-        <code class="language-sql">
-            CREATE TABLE sandbox.customers (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                `name` VARCHAR(50),
-                email VARCHAR(100)
-            )
-            ;
-            DELIMITER //
-            CREATE PROCEDURE seed_customers()
-            BEGIN
-                DECLARE i INT DEFAULT 1;
-                DECLARE `name` VARCHAR(50) DEFAULT '';
-                DECLARE email VARCHAR(100) DEFAULT '';
+    ```sql
+    CREATE TABLE sandbox.customers (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        `name` VARCHAR(50),
+        email VARCHAR(100)
+    )
+    ;
+    DELIMITER //
+    CREATE PROCEDURE seed_customers()
+    BEGIN
+        DECLARE i INT DEFAULT 1;
+        DECLARE `name` VARCHAR(50) DEFAULT '';
+        DECLARE email VARCHAR(100) DEFAULT '';
 
-                WHILE i <= 10 DO
-                    SET `name` = SUBSTRING(
-                        MD5(RAND()),
+        WHILE i <= 10 DO
+            SET `name` = SUBSTRING(
+                MD5(RAND()),
+                1,
+                5
+            );
+            
+            set email = CONCAT(
+                SUBSTRING(
+                    MD5(RAND()),
                         1,
                         5
-                    );
-                    
-                    set email = CONCAT(
-                        SUBSTRING(
-                            MD5(RAND()),
-                                1,
-                                5
-                        ),
-                        '@',
-                        SUBSTRING(
-                            MD5(RAND()),
-                                1,
-                                5
-                        ),
-                        '.com'		
-                    );
-                
-                    INSERT INTO sandbox.customers (
-                        `name`,
-                        email
-                    ) VALUES (
-                        `name`,
-                        email
-                    );
-                    
-                    SET i = i + 1;	
-                END WHILE;
-            END
-            //
-            DELIMITER ;
-            CALL seed_customers()
-            ;
-            SELECT * FROM sandbox.customers
-            ;
-        </code>
-    </pre>
+                ),
+                '@',
+                SUBSTRING(
+                    MD5(RAND()),
+                        1,
+                        5
+                ),
+                '.com'		
+            );
+        
+            INSERT INTO sandbox.customers (
+                `name`,
+                email
+            ) VALUES (
+                `name`,
+                email
+            );
+            
+            SET i = i + 1;	
+        END WHILE;
+    END
+    //
+    DELIMITER ;
+    CALL seed_customers()
+    ;
+    SELECT * FROM sandbox.customers
+    ;
+    ```
 </details>
+
 > ###### CLEAN UP
 > - DROP TABLE IF EXISTS sandbox.customers;
 > - DROP PROCEDURE IF EXISTS sandbox.seed_customers;
