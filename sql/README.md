@@ -1,9 +1,13 @@
 # SETUP
 
 ##### DATABASE
-> CREATE DATABASE sandbox;
+<details>
+    <summary>Setup:</summary>
 
-<br />
+```sql
+CREATE DATABASE sandbox;
+```
+</details>
 
 ##### TABLE: CUSTOMER
 <details>
@@ -74,8 +78,6 @@ DROP PROCEDURE IF EXISTS sandbox.seed_customers;
 ```
 </details>
 
-<br />
-
 ##### TABLE: ORDERS
 <details>
     <summary>Setup:</summary>
@@ -127,8 +129,6 @@ DROP TABLE IF EXISTS sandbox.orders;
 DROP PROCEDURE IF EXISTS sandbox.seed_orders;
 ```
 </details>
-
-<br />
 
 ##### TABLE: EMPLOYEES
 <details>
