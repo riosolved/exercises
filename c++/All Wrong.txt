@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+string getWrongAnswers(int N, string C) {
+  string output;
+
+  for(char character : C) {
+    if(character == 'A') {
+      output += 'B';
+    } else if (character == 'B') {
+      output += 'A';
+    }
+  }  
+
+  // NOTE: THE FOLLOWING ITERATES ON 'C' AS WELL
+  /*
+  for(int i = 0; i < C.size(); i++) {
+    if(C[i] == 'A') {
+      output += 'B';
+    } else if (C[i] == 'B') {
+      output += 'A';
+    }
+  }
+  */
+
+  return output;
+}

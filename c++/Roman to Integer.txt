@@ -1,0 +1,172 @@
+Roman to Integer
+- Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
+
+Symbol       Value
+I             1
+V             5
+X             10
+L             50
+C             100
+D             500
+M             1000
+
+For example, 2 is written as II in Roman numeral, just two ones added together. 12 is written as XII, which is simply X + II. The number 27 is written as XXVII, which is XX + V + II.
+
+Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not IIII. Instead, the number four is written as IV. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as IX. There are six instances where subtraction is used:
+- I can be placed before V (5) and X (10) to make 4 and 9. 
+- X can be placed before L (50) and C (100) to make 40 and 90. 
+- C can be placed before D (500) and M (1000) to make 400 and 900.
+
+Given a roman numeral, convert it to an integer.
+
+**************************
+
+Example 1:
+- Input: s = "III"
+- Output: 3
+- Explanation: III = 3.
+
+Example 2:
+- Input: s = "LVIII"
+- Output: 58
+- Explanation: L = 50, V= 5, III = 3.
+
+Example 3:
+- Input: s = "MCMXCIV"
+- Output: 1994
+- Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
+
+**************************
+
+int integer_for_numeral(char s) {
+    switch (s) {
+        case 'I': {
+            return 1;
+        }
+        case 'V': {
+            return 5;
+        }
+        case 'X': {
+            return 10;
+        }
+        case 'L': {
+            return 50;
+        }
+        case 'C': {
+            return 100;
+        }
+        case 'D': {
+            return 500;
+        }
+        case 'M': {
+            return 1000;
+        }
+        default: {
+            return 0;
+        }
+    }
+};
+
+class Solution {
+public:
+    int romanToInt(string s) {
+        int processed = 0;
+        int index = s.size() - 1;
+
+        while (index >= 0) {
+            int current = integer_for_numeral(s[index]);
+
+            // NOTE : HANDLE LAST ITERATION
+            if(index - 1 < 0) {
+                processed += current;
+
+                index--;
+
+                break;
+            }
+
+            int next = integer_for_numeral(s[index - 1]);
+
+            // NOTE : WE CAN LOOK AHEAD TO SEE IF THE NEXT ROMAN NUMERAL IS OF A LOWER VALUE THAN THE CURRENT ROMAN NUMERAL CHARACTER (WE'RE TRAVERSING LEFT TO RIGHT). GIVEN THAT,
+            // - I + V = IV -> V - I = 4
+            // - I + X = IV -> V - I = 9
+            // - X + L = XL -> L - X = 40
+            // - X + C = XC -> C - X = 90
+            // - C + D = CD -> D - C = 400
+            // - C + M = CM -> M - C = 900
+            if(next < current) {
+                processed += current - next;
+
+                index -= 2;
+
+                continue;
+            }
+
+            processed += current;
+
+            index--;
+        }
+
+        return processed;
+
+        // NOTE : THE FOLLOWING SOLUTION TAKES 19ms
+        /*
+        unordered_map<string, int> codex;
+
+        codex["I"] = 1;
+        codex["V"] = 5;
+        codex["X"] = 10;
+        codex["L"] = 50;
+        codex["C"] = 100;
+        codex["D"] = 500;
+        codex["M"] = 1000;
+        codex["IV"] = 4;
+        codex["IX"] = 9;
+        codex["XL"] = 40;
+        codex["XC"] = 90;
+        codex["CD"] = 400;
+        codex["CM"] = 900;
+
+        int processed = 0;
+
+        for(int i = 0; i < s.size(); i++) {
+            string key;
+
+            char current = s[i];
+
+            key += current;
+
+            if(i >= s.size() - 1) {
+                processed += codex[key];
+
+                break;
+            }
+
+            char next = s[i + 1];
+
+            string combination;
+            combination += current;
+            combination += next;
+
+            if(
+                combination == "IV" ||
+                combination == "IX" ||
+                combination == "XL" ||
+                combination == "XC" ||
+                combination == "CD" ||
+                combination == "CM"
+            ) {
+                processed += codex[combination];
+
+                i++;
+
+                continue;
+            }
+
+            processed += codex[key];
+        }
+
+        return processed;
+        */
+    }
+};

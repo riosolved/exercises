@@ -1,0 +1,6 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int getSum(int A, int B, int C) {
+  return A + B + C;
+}

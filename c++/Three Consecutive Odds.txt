@@ -1,0 +1,54 @@
+Three Consecutive Odds
+- Given an integer array arr, return true if there are three consecutive odd numbers in the array. Otherwise, return false.
+
+*********************
+
+Example 1:
+	Input: arr = [2,6,4,1]
+	Output: false
+	Explanation: There are no three consecutive odds.
+
+*********************
+
+class Solution {
+public:
+    bool threeConsecutiveOdds(vector<int>& arr) {
+        int count = 0;
+
+        for(int value : arr) {
+            bool is_odd = value % 2 != 0;
+
+            if(is_odd) {
+                count++;
+
+                if(count > 2) {
+                    return true;
+                }
+            } else {
+                count = 0;
+            }
+        }
+
+        return false;
+
+        // NOTE : THE FOLLOWING SOLUTION IS NOT OPTIMAL, AS WE CAN BREAK EARLY ON DETECTION OF THREE CONSECUTIVE ODD VALUES
+        /*
+        int consecutive_odds = 0;
+        int streak = 0;
+
+        for(int value : arr) {
+            bool odd = value % 2 != 0;
+
+            if(odd) {
+                consecutive_odds++;
+
+                streak = consecutive_odds > streak ? consecutive_odds : streak;
+            } else {
+                consecutive_odds = 0;
+            }
+        }
+
+        return streak >= 3;
+        */
+    }
+};

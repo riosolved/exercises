@@ -1,0 +1,17 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+double getHitProbability(int R, int C, vector<vector<int>> G) {
+  int cells = 0;
+  int ships = 0;
+
+  for(const vector<int> &column : G) {
+    for(int cell : column) {
+      ships += cell > 0 ? 1 : 0;
+      cells++;
+    }
+  }
+  
+  // NOTE : THIS FUNCTION RETURNS A DOUBLE, THEREFORE WE MUST CONVERT OUR INT DATA TYPES TO DOUBLES FOR ALIGNING WITH THE RETURN TYPE
+  return (static_cast<double>(ships) / static_cast<double>(cells));
+}

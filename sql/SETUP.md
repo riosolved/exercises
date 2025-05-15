@@ -1,4 +1,5 @@
 # SETUP
+The following are a set of SQL commands for setting up the sandbox environment. This is required before executing any additional commands within the SQL exercises space. 
 
 ##### DATABASE
 Setup:
@@ -92,23 +93,33 @@ CREATE TABLE sandbox.orders (
 DELIMITER //
 CREATE PROCEDURE seed_orders()
 BEGIN
-	DECLARE product VARCHAR(100) DEFAULT '';
-
-	SET product = SUBSTRING(
-		MD5(RAND()),
-		1,
-		10
-	);
-			
 	INSERT INTO sandbox.orders (
 		customer_id,
 		product,
 		order_date
 	)
-	SELECT id, product, CURDATE()
+	SELECT id, (
+		SUBSTRING(
+			MD5(RAND()),
+			1,
+			10
+		)
+	), CURDATE()
 	FROM sandbox.customers AS c
 	ORDER BY c.id
 	LIMIT 3;
+
+	INSERT INTO sandbox.orders (
+		product,
+		order_date
+	) VALUES (
+		SUBSTRING(
+			MD5(RAND()),
+			1,
+			10
+		),
+		CURDATE()
+	);
 END
 //
 DELIMITER ;
