@@ -65,13 +65,21 @@ SELECT * FROM sandbox.customers
 ```
 </details>
 
-> ###### CLEAN UP
-> - DROP TABLE IF EXISTS sandbox.customers;
-> - DROP PROCEDURE IF EXISTS sandbox.seed_customers;
+<details>
+    <summary>Dispose:</summary>
+
+```sql
+DROP TABLE IF EXISTS sandbox.customers;
+DROP PROCEDURE IF EXISTS sandbox.seed_customers;
+```
+</details>
 
 <br />
 
 ##### TABLE: ORDERS
+<details>
+    <summary>Setup:</summary>
+
 ```sql
 CREATE TABLE sandbox.orders (
 	id INT AUTO_INCREMENT PRIMARY KEY,
@@ -109,13 +117,23 @@ CALL seed_orders()
 SELECT * FROM sandbox.orders
 ;
 ```
-> ###### CLEAN UP
-> - DROP TABLE IF EXISTS sandbox.orders;
-> - DROP PROCEDURE IF EXISTS sandbox.seed_orders;
+</details>
+
+<details>
+    <summary>Dispose:</summary>
+
+```sql
+DROP TABLE IF EXISTS sandbox.orders;
+DROP PROCEDURE IF EXISTS sandbox.seed_orders;
+```
+</details>
 
 <br />
 
 ##### TABLE: EMPLOYEES
+<details>
+    <summary>Setup:</summary>
+
 ```sql
 CREATE TABLE sandbox.employees (
 	id INT AUTO_INCREMENT PRIMARY KEY,
@@ -169,9 +187,16 @@ CALL seed_employees()
 SELECT * FROM sandbox.employees
 ;
 ```
-> ###### CLEAN UP
-> - DROP TABLE IF EXISTS sandbox.employees;
-> - DROP PROCEDURE IF EXISTS sandbox.seed_employees;
+</details>
+
+<details>
+    <summary>Dispose:</summary>
+
+```sql
+DROP TABLE IF EXISTS sandbox.employees;
+DROP PROCEDURE IF EXISTS sandbox.seed_employees;
+```
+</details>
 
 <br />
 ***
