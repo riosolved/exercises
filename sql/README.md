@@ -217,7 +217,7 @@ INNER JOIN sandbox.customers AS c
 ON c.id = o.customer_id
 ;
 ```
-> Fetching all orders with an associated customer, excluding rows from either table where no match exists.
+
 <table caption="orders (3 rows)">
     <thead>
         <tr>
@@ -260,6 +260,9 @@ ON c.id = o.customer_id
         </tr>
     </tbody>
 </table>
+> Fetching all orders with an associated customer, excluding rows from either table where no match exists.
+
+> Returns all records where an employee has a manager.
 
 <br />
 
@@ -272,7 +275,7 @@ LEFT JOIN sandbox.orders AS o
 ON o.customer_id = c.id
 ;
 ```
-> Retrieves all customers, if they did not place an order.
+
 <table caption="customers (10 rows)">
     <thead>
         <tr>
@@ -379,6 +382,8 @@ ON o.customer_id = c.id
     </tbody>
 </table>
 
+> Retrieves all customers, if they did not place an order.
+
 <br />
 
 ##### SELF JOIN
@@ -392,7 +397,7 @@ JOIN sandbox.employees AS b
 ON b.id = a.manager_id
 ;
 ```
-> Returns all records where an employee has a manager.
+
 <table caption="employees (3 rows)">
     <thead>
         <tr>
@@ -415,5 +420,7 @@ ON b.id = a.manager_id
         </tr>
     </tbody>
 </table>
+
+> Returns all records where an employee has a manager.
 
 <br />
