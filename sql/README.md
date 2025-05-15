@@ -9,6 +9,8 @@ CREATE DATABASE sandbox;
 ```
 </details>
 
+<br />
+
 ##### TABLE: CUSTOMER
 <details>
     <summary>Setup:</summary>
@@ -78,6 +80,8 @@ DROP PROCEDURE IF EXISTS sandbox.seed_customers;
 ```
 </details>
 
+<br />
+
 ##### TABLE: ORDERS
 <details>
     <summary>Setup:</summary>
@@ -129,6 +133,8 @@ DROP TABLE IF EXISTS sandbox.orders;
 DROP PROCEDURE IF EXISTS sandbox.seed_orders;
 ```
 </details>
+
+<br />
 
 ##### TABLE: EMPLOYEES
 <details>
@@ -198,8 +204,6 @@ DROP PROCEDURE IF EXISTS sandbox.seed_employees;
 ```
 </details>
 
-<br />
-***
 <br />
 
 # JOINS
