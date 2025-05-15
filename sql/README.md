@@ -6,7 +6,7 @@
 <br />
 
 ##### TABLE: CUSTOMER
-```
+```sql
 CREATE TABLE sandbox.customers (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	`name` VARCHAR(50),
@@ -67,7 +67,7 @@ SELECT * FROM sandbox.customers
 <br />
 
 ##### TABLE: ORDERS
-```
+```sql
 CREATE TABLE sandbox.orders (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	customer_id INT,
@@ -111,7 +111,7 @@ SELECT * FROM sandbox.orders
 <br />
 
 ##### TABLE: EMPLOYEES
-```
+```sql
 CREATE TABLE sandbox.employees (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	`name` VARCHAR(50),
@@ -173,7 +173,7 @@ SELECT * FROM sandbox.employees
 # JOINS
 
 ##### INNER JOIN
-```
+```sql
 SELECT *
 FROM sandbox.orders AS o
 
@@ -225,8 +225,10 @@ ON c.id = o.customer_id
     </tbody>
 </table>
 
+<br />
+
 ##### LEFT JOIN / LEFT OUTER JOIN
-```
+```sql
 SELECT *
 FROM sandbox.customers AS c
 
@@ -341,8 +343,10 @@ ON o.customer_id = c.id
     </tbody>
 </table>
 
+<br />
+
 ##### SELF JOIN
-```
+```sql
 SELECT
 a.`name` AS employee,
 b.`name` AS manager
@@ -375,3 +379,5 @@ ON b.id = a.manager_id
         </tr>
     </tbody>
 </table>
+
+<br />
