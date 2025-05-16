@@ -1,5 +1,5 @@
-### C++
-A collection of exercises/challenges, gathered from sources like LeetCode, CodeWars, HackerRank, and technical screenings.
+A collection of exercises and knowledge.
+- Exercises have been gathered from sources like LeetCode, CodeWars, HackerRank, and technical screenings.
 
-### SQL
-[Setup sandbox.](sql/SETUP.md)
+- [C++](c++/README.md)
+- [SQL](sql/README.md)
