@@ -379,6 +379,7 @@ WHERE c.id IS NULL
 
 ##### FULL JOIN
 > **ATTENTION**
+> 
 > "FULL JOIN" is not supported in MySQL.
 >
 > Supported databases inclued: PostgreSQL, Microsoft SQL Server, Oracle, Snowflake, and IBM Db2.
@@ -493,6 +494,7 @@ The above returns all unique rows from both tables, matched or not. Filling in N
 - UNION combines both result sets, effectively simulating a FULL JOIN.
 
 > **NOTE**
+> 
 > UNION will remove duplicates.
 >
 > Using UNION ALL we can prevent duplicates being removed, thus giving us all records.
