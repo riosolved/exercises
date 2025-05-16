@@ -1,7 +1,6 @@
-> Assumes you've done: [setup.md](../../setup.md)
+Assumes: [setup.md](../../setup.md)
 
-##### TABLE: sandbox.performance_indexing_a
-> The table not containing an index
+##### TABLE: sandbox.performance_indexing_a (table not containing an index)
 ```sql
 DROP TABLE IF EXISTS sandbox.performance_indexing_a
 ;
@@ -41,8 +40,9 @@ SELECT * FROM sandbox.performance_indexing_a
 ;
 ```
 
-##### TABLE: sandbox.performance_indexing_b
-> The table containing an index
+<br />
+
+##### TABLE: sandbox.performance_indexing_b (table containing an index)
 ```sql
 DROP TABLE IF EXISTS sandbox.performance_indexing_b
 ;
@@ -81,6 +81,8 @@ CALL sandbox.seed_performance_indexing_b()
 SELECT * FROM sandbox.performance_indexing_b ORDER BY id ASC
 ;
 ```
+
+<br />
 
 ##### COMPARISON
 ```sql
