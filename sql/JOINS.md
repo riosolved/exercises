@@ -1,4 +1,3 @@
-# JOINS
 ![Diagram](./joins.png)
 
 ##### INNER JOIN
@@ -355,8 +354,9 @@ WHERE c.id IS NULL
 <br />
 
 ##### FULL JOIN
-> *ATTENTION*
+> **ATTENTION**
 > "FULL JOIN" is not supported in MySQL.
+>
 > Supported databases inclued: PostgreSQL, Microsoft SQL Server, Oracle, Snowflake, and IBM Db2.
 
 We must emulate a FULL JOIN in MySQL.
@@ -463,10 +463,15 @@ ON o.customer_id = c.id
     </tbody>
 </table>
 
-The above returns all rows from both tables, matched or not. Filling in NULLs when there's no match.
+The above returns all unique rows from both tables, matched or not. Filling in NULLs when there's no match.
 - LEFT JOIN gives us all customers, including those without orders.
 - RIGHT JOIN gives us all orders, including those with no matching customer.
 - UNION combines both result sets, effectively simulating a FULL JOIN.
+
+> **NOTE**
+> UNION will remove duplicates.
+>
+> Using UNION ALL we can prevent duplicates being removed, thus giving us all records.
 
 <br />
 
@@ -476,35 +481,35 @@ The above returns all rows from both tables, matched or not. Filling in NULLs wh
 > Supported databases inclued: PostgreSQL, Microsoft SQL Server, Oracle, Snowflake, and IBM Db2.
 
 ```sql
-SELECT *
-FROM (
-	SELECT
-	c.id AS customer_id,
-	c.`name`,
-	o.id AS order_id,
-	o.product
-	FROM sandbox.customers AS c
-	
-	LEFT JOIN sandbox.orders AS o
-	ON o.customer_id = c.id
-	
-	UNION
-	
-	SELECT
-	c.id AS customer_id,
-	c.`name`,
-	o.id AS order_id,
-	o.product
-	FROM sandbox.customers AS c
-	
-	RIGHT JOIN sandbox.orders AS o
-	ON o.customer_id = c.id
-) AS f
 
-WHERE f.customer_id IS NULL OR f.order_id IS NULL
+SELECT
+c.id AS customer_id,
+c.`name`,
+o.id AS order_id,
+o.product
+FROM sandbox.customers AS c
+
+LEFT JOIN sandbox.orders AS o
+ON o.customer_id = c.id
+
+WHERE o.customer_id IS NULL
+
+UNION
+
+SELECT
+c.id AS customer_id,
+c.`name`,
+o.id AS order_id,
+o.product
+FROM sandbox.customers AS c
+
+RIGHT JOIN sandbox.orders AS o
+ON o.customer_id = c.id
+
+WHERE c.id IS NULL
 ;
 ```
-<table caption="SELECT (8 rows)">
+<table caption="customers (8 rows)">
     <thead>
         <tr>
             <th class="col1">customer_id</th>
@@ -564,6 +569,8 @@ WHERE f.customer_id IS NULL OR f.order_id IS NULL
         </tr>
     </tbody>
 </table>
+
+> The above returns all unique rows from both tables where there is no match.
 
 <br />
 
