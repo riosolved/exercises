@@ -134,14 +134,9 @@ SELECT
     </tbody>
 </table>
 
-For the most part, searching `performance_indexing_b` will result in faster execution times because we added an index to name via `INDEX index_name (``name``)`.
+For the most part, searching `performance_indexing_b` with a name will result in faster execution times because of the index: `INDEX index_name (name)`
 
-> NOTE
-> 
 > - PRIMARY KEY (id): Automatically creates a unique clustered index.
-> 
 > - On table of `performance_indexing_b` the `INDEX index_name(name)` speeds up `WHERE name = ...`
-> 
 > - Doing `UNIQUE INDEX` prevents duplicates and optimizes lookups.
-> 
 > - There can only be one AUTO_INCREMENT column and it must be defined as a key.
